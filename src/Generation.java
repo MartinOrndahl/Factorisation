@@ -56,7 +56,6 @@ public class Generation {
         for (BigInteger b : factorbase) {
             emptyMap.put(b, BigInteger.ZERO);
         }
-        System.out.println("Size of emptyMap: " + emptyMap.size());
         int position = 0;
         for (int k = 1; smoothNbrs.size() < L; k++) {
             for (int j = 1; j < 1000 && smoothNbrs.size() < L; j++) {

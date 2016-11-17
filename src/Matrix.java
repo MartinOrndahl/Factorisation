@@ -83,7 +83,8 @@ public class Matrix {
                 System.out.println("Testing candidate: " + counter + " /" + nbrCandidates);
                 BigInteger value = left.subtract(right).abs().gcd(N); //ÄNDRADE ORDNING
                 if (!value.equals(BigInteger.ONE) && !value.equals(N)) {
-                    System.out.println("Solution found: " + value);
+                    System.out.println("Solution found: " + value + " and " + N.divide(value) + " are factors of N.");
+                    System.out.println("Running time: " + (System.currentTimeMillis()-Main.startTime)/1000 + " ms.");
                     System.exit(1);
                 }
                 counter++;
