@@ -20,8 +20,8 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        System.out.println("Primefactors of 44");
-        for (Integer integer : primeFactors(44)) {
+        System.out.println("Primefactors of 225");
+        for (Integer integer : primeFactors(225)) {
             System.out.println(integer);
         }
         System.out.println("Primefactors of 3");

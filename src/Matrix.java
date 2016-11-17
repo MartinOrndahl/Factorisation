@@ -78,13 +78,12 @@ public class Matrix {
                     right = right.multiply(factor);
                 }
                 //
-                right = MathOperations.squareRoot(right).mod(N);
-                left = MathOperations.squareRoot(left).mod(N);
+                right = MathOperations.squareRoot(right).mod(N);;
 
                 System.out.println("Testing candidate: " + counter + " /" + nbrCandidates);
-                BigInteger value = right.subtract(left).abs().gcd(N);
+                BigInteger value = left.subtract(right).abs().gcd(N); //ÄNDRADE ORDNING
                 if (!value.equals(BigInteger.ONE) && !value.equals(N)) {
-                    System.out.println("Solutions found: " + value);
+                    System.out.println("Solution found: " + value);
                     System.exit(1);
                 }
                 counter++;

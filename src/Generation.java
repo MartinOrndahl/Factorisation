@@ -69,6 +69,7 @@ public class Generation {
                 TreeMap<BigInteger, BigInteger> primefactors = MathOperations.primefactors(r, N, factorbase);
                 boolean crash = false;
                 if (primefactors != null) {
+                  //  System.out.println(primefactors);
                     /**CHECK AV DUBLETTER!**/
                     for(Map.Entry<Integer, Element> item : smoothNbrs.entrySet()){
                         if(item.getValue().getFactors().entrySet().equals(primefactors.entrySet())){
