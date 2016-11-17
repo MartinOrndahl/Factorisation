@@ -28,22 +28,23 @@ public class MathOperations {
      * PRIMEFACTORS PRIMEFACTORS PRIMEFACTORS PRIMEFACTORS PRIMEFACTORS PRIMEFACTORS
      **/
 
-    public static TreeMap<BigInteger, BigInteger> primefactors(BigInteger r, int b, ArrayList<BigInteger> factorbase, TreeMap<BigInteger, BigInteger> emptyMap) {
-        TreeMap<BigInteger, BigInteger> primeFactors = new TreeMap<>(emptyMap);
+    public static TreeMap<BigInteger, BigInteger> primefactors(BigInteger r, BigInteger n, ArrayList<BigInteger> factorbase) {
+        TreeMap<BigInteger, BigInteger> primeFactors = new TreeMap<>();
+        r = r.pow(2).mod(n);
 
-       for(BigInteger factor : factorbase){
-           BigInteger exponent = BigInteger.ZERO;
-           while(r.mod(factor).equals(BigInteger.ZERO)){
-               r = r.divide(factor);
-               exponent = exponent.add(BigInteger.ONE);
-           }
-           primeFactors.put(factor, exponent.mod(BigInteger.valueOf(2)));
-       }
-       if(r.equals(BigInteger.ONE)){
-          // System.out.println("R FOUND!");
-           return primeFactors;
-       }
-       return null;
+        for (BigInteger factor : factorbase) {
+            BigInteger exponent = BigInteger.ZERO;
+            while (r.mod(factor).equals(BigInteger.ZERO)) {
+                r = r.divide(factor);
+                exponent = exponent.add(BigInteger.ONE);
+            }
+            primeFactors.put(factor, exponent);
+        }
+        if (r.equals(BigInteger.ONE)) {
+            // System.out.println("R FOUND!");
+            return primeFactors;
+        }
+        return null;
     }
 
 }

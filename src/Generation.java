@@ -66,7 +66,7 @@ public class Generation {
                 r = MathOperations.squareRoot(r);
                 r = r.add(BigInteger.valueOf(j));
 
-                TreeMap<BigInteger, BigInteger> primefactors = MathOperations.primefactors(r, B, factorbase, emptyMap);
+                TreeMap<BigInteger, BigInteger> primefactors = MathOperations.primefactors(r, N, factorbase);
                 boolean crash = false;
                 if (primefactors != null) {
                     /**CHECK AV DUBLETTER!**/

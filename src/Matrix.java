@@ -61,9 +61,9 @@ public class Matrix {
                         left = left.multiply(smoothNbrs.get(i).getNumber());
                         TreeMap<BigInteger, BigInteger> temp = smoothNbrs.get(i).getFactors();
                         for (Map.Entry<BigInteger, BigInteger> entry : temp.entrySet()) {
-                            if(!entry.getValue().equals(BigInteger.ZERO)){
-                                if(emptyMap.get(entry.getKey()) == null){
-                                    emptyMap.put(entry.getKey(), entry.getValue().add(entry.getValue()));
+                            if (!entry.getValue().equals(BigInteger.ZERO)) {
+                                if (emptyMap.get(entry.getKey()) == null) {
+                                    emptyMap.put(entry.getKey(), entry.getValue());
                                 } else {
                                     emptyMap.put(entry.getKey(), emptyMap.get(entry.getKey()).add(entry.getValue()));
                                 }
@@ -74,18 +74,15 @@ public class Matrix {
 
                 BigInteger right = BigInteger.ONE;
                 for (Map.Entry<BigInteger, BigInteger> item : emptyMap.entrySet()) {
-                    right = right.multiply(item.getKey().pow(item.getValue().intValue()));
+                    BigInteger factor = item.getKey().pow(item.getValue().intValue());
+                    right = right.multiply(factor);
                 }
+                //
                 right = MathOperations.squareRoot(right).mod(N);
-                left =left.pow(2).mod(N);
+                left = MathOperations.squareRoot(left).mod(N);
 
                 System.out.println("Testing candidate: " + counter + " /" + nbrCandidates);
                 BigInteger value = right.subtract(left).abs().gcd(N);
-                if (!value.equals(BigInteger.ONE) && !value.equals(N)) {
-                    System.out.println("Solutions found: " + value);
-                    System.exit(1);
-                }
-                value = right.add(left).abs().gcd(N);
                 if (!value.equals(BigInteger.ONE) && !value.equals(N)) {
                     System.out.println("Solutions found: " + value);
                     System.exit(1);
