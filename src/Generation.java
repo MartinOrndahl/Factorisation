@@ -57,21 +57,30 @@ public class Generation {
             emptyMap.put(b, BigInteger.ZERO);
         }
         System.out.println("Size of emptyMap: " + emptyMap.size());
-
         int position = 0;
-        for (int k = 2; k < 1000 && smoothNbrs.size() < L; k++) {
+        for (int k = 1; smoothNbrs.size() < L; k++) {
             for (int j = 1; j < 1000 && smoothNbrs.size() < L; j++) {
+
                 BigInteger r;
                 r = BigInteger.valueOf(k).multiply(N);
                 r = MathOperations.squareRoot(r);
                 r = r.add(BigInteger.valueOf(j));
 
                 TreeMap<BigInteger, BigInteger> primefactors = MathOperations.primefactors(r, B, factorbase, emptyMap);
-                boolean crash = true;
+                boolean crash = false;
                 if (primefactors != null) {
-                    /**INFÖR CHECK AV DUBLETTER!**/
-                    smoothNbrs.put(position, new Element(r, primefactors));
-                    position++;
+                    /**CHECK AV DUBLETTER!**/
+                    for(Map.Entry<Integer, Element> item : smoothNbrs.entrySet()){
+                        if(item.getValue().getFactors().entrySet().equals(primefactors.entrySet())){
+                            crash = true;
+                            break;
+                        }
+                    }
+                    if(!crash){
+                        smoothNbrs.put(position, new Element(r, primefactors));
+                        position++;
+                    }
+
                 }
             }
         }

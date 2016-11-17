@@ -37,7 +37,7 @@ public class MathOperations {
                r = r.divide(factor);
                exponent = exponent.add(BigInteger.ONE);
            }
-           primeFactors.put(factor, exponent);
+           primeFactors.put(factor, exponent.mod(BigInteger.valueOf(2)));
        }
        if(r.equals(BigInteger.ONE)){
           // System.out.println("R FOUND!");
