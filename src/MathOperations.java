@@ -4,10 +4,9 @@ import java.util.List;
 import java.util.TreeMap;
 
 /**
- * Created by ornda on 2016-11-16.
+ * Created by orndahl on 2016-11-16.
  */
 public class MathOperations {
-
 
     /**
      * SQUREROOT SQUREROOT SQUREROOT SQUREROOT SQUREROOT
@@ -41,10 +40,8 @@ public class MathOperations {
             primeFactors.put(factor, exponent);
         }
         if (r.equals(BigInteger.ONE)) {
-            // System.out.println("R FOUND!");
             return primeFactors;
         }
         return null;
     }
-
 }

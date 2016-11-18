@@ -2,7 +2,7 @@ import java.math.BigInteger;
 import java.util.HashMap;
 
 /**
- * Created by ornda on 2016-11-16.
+ * Created by orndahl on 2016-11-16.
  */
 public class Main {
     private static BigInteger N = new BigInteger("208863203872858491183629");
@@ -14,9 +14,6 @@ public class Main {
         startTime = System.currentTimeMillis();
         Generation g = new Generation(N, B, L);
         HashMap<Integer, Element> smoothNbrs = g.smoothNbrs();
-        Matrix m = new Matrix(N, B,smoothNbrs);
-        System.out.println();
-        long endTime = System.currentTimeMillis();
-
+        new Matrix(N, B,smoothNbrs);
     }
 }

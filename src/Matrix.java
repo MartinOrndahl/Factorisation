@@ -27,25 +27,21 @@ public class Matrix {
 
             for (Map.Entry<Integer, Element> entry : smoothNbrs.entrySet()) {
                 TreeMap<BigInteger, BigInteger> smoothNbrsElement = entry.getValue().getFactors();
-
                 for (Map.Entry<BigInteger, BigInteger> item : smoothNbrsElement.entrySet()) {
                     pw.print(item.getValue() + " ");
                 }
                 pw.print("\r\n");
             }
             pw.close();
-
             new File("solved.txt").createNewFile();
-
-            Process proc;
-            proc = Runtime.getRuntime().exec("GaussBin.exe prepared.txt solved.txt");
+            Process proc = Runtime.getRuntime().exec("GaussBin.exe prepared.txt solved.txt");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private void solve() {
-
+        System.out.printf("%-40s%s%n", "Testing candidates", System.currentTimeMillis());
 
         try {
             Scanner sc = new Scanner(new FileReader(new File("solved.txt")));
@@ -77,22 +73,20 @@ public class Matrix {
                     BigInteger factor = item.getKey().pow(item.getValue().intValue());
                     right = right.multiply(factor);
                 }
-                //
+
                 right = MathOperations.squareRoot(right).mod(N);;
 
-                System.out.println("Testing candidate: " + counter + " /" + nbrCandidates);
-                BigInteger value = left.subtract(right).abs().gcd(N); //ÄNDRADE ORDNING
+                System.out.printf("%-40s%s%n", "Testing candidate " + counter + " /" + nbrCandidates, System.currentTimeMillis());
+                BigInteger value = left.subtract(right).abs().gcd(N);
                 if (!value.equals(BigInteger.ONE) && !value.equals(N)) {
-                    System.out.println("Solution found: " + value + " and " + N.divide(value) + " are factors of N.");
-                    System.out.println("Running time: " + (System.currentTimeMillis()-Main.startTime)/1000 + " ms.");
+                    System.out.printf("%-40s%s%n", "Solution found: " + value + " and " + N.divide(value) + ".","");
+                    System.out.printf("%-40s%s%n","Running time: ",(System.currentTimeMillis()-Main.startTime));
                     System.exit(1);
                 }
                 counter++;
-
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 }

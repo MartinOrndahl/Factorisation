@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.util.*;
 
 /**
- * Created by ornda on 2016-11-16.
+ * Created by orndahl on 2016-11-16.
  */
 public class Generation {
     private ArrayList<BigInteger> factorbase;
@@ -19,12 +19,11 @@ public class Generation {
         factorbase(BigInteger.valueOf(b));
     }
 
-
     /**
      * FACTORBASE FACTORBASE FACTORBASE FACTORBASE FACTORBASE
      **/
     private void factorbase(BigInteger bsmooth) {
-        System.out.println("Generating factorbase " + System.currentTimeMillis());
+        System.out.printf("%-40s%s%n", "Generating factorbase", System.currentTimeMillis());
         ArrayList<BigInteger> factorbase = new ArrayList<>();
         try {
             Scanner sc = new Scanner(new File("prim_2_24.txt"));
@@ -35,20 +34,17 @@ public class Generation {
             e.printStackTrace();
         }
         this.factorbase = factorbase;
-        System.out.println("Size of factorbase: " + factorbase.size());
-        System.out.println("Largest prime in factorbase: " + factorbase.get(factorbase.size() - 1));
     }
 
     public ArrayList<BigInteger> getFactorbase() {
         return factorbase;
     }
 
-
     /**
      * BSMOOTH_NBRS BSMOOTH_NBRS BSMOOTH_NBRS BSMOOTH_NBRS
      **/
     public HashMap<Integer, Element> smoothNbrs() {
-        System.out.println("Generating smoothnumbers " + System.currentTimeMillis());
+        System.out.printf("%-40s%s%n", "Generating R-numbers", System.currentTimeMillis());
         HashMap<Integer, Element> smoothNbrs = new HashMap<>();
 
         //empty map
@@ -69,7 +65,6 @@ public class Generation {
                 boolean crash = false;
                 if (primefactors != null) {
                   //  System.out.println(primefactors);
-                    /**CHECK AV DUBLETTER!**/
                     for(Map.Entry<Integer, Element> item : smoothNbrs.entrySet()){
                         if(item.getValue().getFactors().entrySet().equals(primefactors.entrySet())){
                             crash = true;
@@ -80,14 +75,10 @@ public class Generation {
                         smoothNbrs.put(position, new Element(r, primefactors));
                         position++;
                     }
-
                 }
             }
         }
-        System.out.println("Generating smoothnumbers - DONE " + System.currentTimeMillis());
-        System.out.println("Number of Bsmooth nrbs " + smoothNbrs.size());
+        System.out.printf("%-40s%s%n", "Generating R-numbers - DONE", System.currentTimeMillis());
         return smoothNbrs;
     }
-
-
 }
